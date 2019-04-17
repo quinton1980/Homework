@@ -94,7 +94,7 @@ SELECT
     first_name, last_name, address
 FROM
     staff s
-        INNER JOIN
+        JOIN
     address a ON s.address_id = a.address_id
 
 --6b. Use `JOIN` to display the total amount rung up by each staff member in August of 2005. Use tables `staff` and `payment`.
@@ -102,18 +102,18 @@ SELECT
     first_name, last_name, SUM(amount)
 FROM
     staff s
-        INNER JOIN
+        JOIN
     payment p ON s.staff_id = p.staff_id
 WHERE
     payment_date BETWEEN '2005-08-01' AND '2005-08-31'
 GROUP BY first_name , last_name
 
---6c. List each film and the number of actors who are listed for that film. Use tables `film_actor` and `film`. Use inner join.
+--6c. List each film and the number of actors who are listed for that film. Use tables `film_actor` and `film`. Use JOIN.
 SELECT 
     title, COUNT(actor_id) count_of_actors
 FROM
     film f
-        INNER JOIN
+        JOIN
     film_actor fa ON f.film_id = fa.film_id
 GROUP BY title
 
@@ -122,7 +122,7 @@ SELECT
     title, COUNT(inventory_id) count_in_inventory
 FROM
     film f
-        INNER JOIN
+        JOIN
     inventory i ON f.film_id = i.film_id
 WHERE
     title = 'Hunchback Impossible'
@@ -133,7 +133,7 @@ SELECT
     first_name, last_name, SUM(amount) total_customer_payment
 FROM
     customer c
-        INNER JOIN
+        JOIN
     payment p ON c.customer_id = p.customer_id
 GROUP BY first_name , last_name
 ORDER BY last_name
