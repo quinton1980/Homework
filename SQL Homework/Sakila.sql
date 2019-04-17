@@ -145,16 +145,21 @@ WHERE
 
 --7b. Use subqueries to display all actors who appear in the film `Alone Trip`.
 SELECT 
-    CONCAT(first_name, ' ', last_name) actors_in_Alone_Trip
+    first_name, last_name
 FROM
-    (SELECT 
-        a.actor_id, title, first_name, last_name
-    FROM
-        film f
-    JOIN film_actor fa ON f.film_id = fa.film_id
-    JOIN actor a ON fa.actor_id = a.actor_id
-    WHERE
-        title = 'Alone Trip') actors_in_movies
+    actor
+WHERE
+    actor_id IN (SELECT 
+            actor_id
+        FROM
+            film_actor
+        WHERE
+            film_id IN (SELECT 
+                    film_id
+                FROM
+                    film
+                WHERE
+                    title = 'Alone Trip'))
 
 --7c. You want to run an email marketing campaign in Canada, for which you will need the names and email addresses of all Canadian customers. Use joins to retrieve this information.
 SELECT 
@@ -174,15 +179,15 @@ WHERE
 SELECT DISTINCT
     title
 FROM
-    (SELECT 
-        f.title, i.*
-    FROM
-        inventory i
-    JOIN film f ON i.film_id = f.film_id
-    JOIN film_category fc ON f.film_id = fc.film_id
-    JOIN category c ON fc.category_id = c.category_id
-    WHERE
-        c.category_id = 8) movies
+    inventory i
+        JOIN
+    film f ON i.film_id = f.film_id
+        JOIN
+    film_category fc ON f.film_id = fc.film_id
+        JOIN
+    category c ON fc.category_id = c.category_id
+WHERE
+    c.category_id = 8
 
 --7e. Display the most frequently rented movies in descending order.
 SELECT 
@@ -197,15 +202,17 @@ GROUP BY title
 ORDER BY times_rented DESC
 
 --7f. Write a query to display how much business, in dollars, each store brought in.
-SELECT s.store_id, SUM(amount) AS Gross
-                 FROM payment p
-                 JOIN rental r
-                 ON (p.rental_id = r.rental_id)
-                 JOIN inventory i
-                 ON (i.inventory_id = r.inventory_id)
-                 JOIN store s
-                 ON (s.store_id = i.store_id)
-                 GROUP BY s.store_id;
+SELECT 
+    s.store_id, SUM(amount) AS Gross
+FROM
+    payment p
+        JOIN
+    rental r ON p.rental_id = r.rental_id
+        JOIN
+    inventory i ON (i.inventory_id = r.inventory_id)
+        JOIN
+    store s ON (s.store_id = i.store_id)
+GROUP BY s.store_id
 
 --7g. Write a query to display for each store its store ID, city, and country.
 SELECT 
