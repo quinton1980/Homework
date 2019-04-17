@@ -77,17 +77,7 @@ set first_name = 'GROUCHO'
 where actor_id = 172
 
 --5a. You cannot locate the schema of the `address` table. Which query would you use to re-create it?
-CREATE TABLE address (
-    address_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    address VARCHAR(100),
-    address2 VARCHAR(60),
-    district VARCHAR(25),
-    city_id INT,
-    postal_code INT,
-    phone VARCHAR(20),
-    location BLOB,
-    last_update TIMESTAMP
-)
+Show CREATE TABLE address 
 
 --6a. Use `JOIN` to display the first and last names, as well as the address, of each staff member. Use the tables `staff` and `address`:
 SELECT 
