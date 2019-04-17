@@ -132,12 +132,16 @@ ORDER BY last_name
 SELECT 
     title
 FROM
-    (SELECT 
-        *
-    FROM
-        film
-    WHERE
-        title LIKE 'Q%' OR title LIKE 'K%') films
+    film
+WHERE
+    title LIKE 'Q%'
+        OR title LIKE 'K%'
+        AND language_id IN (SELECT 
+            language_id
+        FROM
+            language
+        WHERE
+            name = 'English')
 
 --7b. Use subqueries to display all actors who appear in the film `Alone Trip`.
 SELECT 
