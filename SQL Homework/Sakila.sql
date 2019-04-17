@@ -77,6 +77,17 @@ set first_name = 'GROUCHO'
 where actor_id = 172
 
 --5a. You cannot locate the schema of the `address` table. Which query would you use to re-create it?
+CREATE TABLE address (
+    address_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    address VARCHAR(100),
+    address2 VARCHAR(60),
+    district VARCHAR(25),
+    city_id INT,
+    postal_code INT,
+    phone VARCHAR(20),
+    location BLOB,
+    last_update TIMESTAMP
+)
 
 --6a. Use `JOIN` to display the first and last names, as well as the address, of each staff member. Use the tables `staff` and `address`:
 SELECT 
@@ -191,4 +202,70 @@ FROM
 GROUP BY title
 ORDER BY times_rented DESC
 
+--7f. Write a query to display how much business, in dollars, each store brought in.
+SELECT s.store_id, SUM(amount) AS Gross
+                 FROM payment p
+                 JOIN rental r
+                 ON (p.rental_id = r.rental_id)
+                 JOIN inventory i
+                 ON (i.inventory_id = r.inventory_id)
+                 JOIN store s
+                 ON (s.store_id = i.store_id)
+                 GROUP BY s.store_id;
+
+--7g. Write a query to display for each store its store ID, city, and country.
+SELECT 
+    s.store_id, c.city, ctry.country
+FROM
+    store s
+        JOIN
+    address a ON s.address_id = a.address_id
+        JOIN
+    city c ON a.city_id = c.city_id
+        JOIN
+    country ctry ON c.country_id = ctry.country_id
+
+--7h. List the top five genres in gross revenue in descending order. (**Hint**: you may need to use the following tables: category, film_category, inventory, payment, and rental.)
+SELECT 
+    cat.name, SUM(p.amount)
+FROM
+    rental r
+        JOIN
+    payment p ON r.rental_id = p.rental_id
+        JOIN
+    inventory i ON r.inventory_id = i.inventory_id
+        JOIN
+    film_category fc ON i.film_id = fc.film_id
+        JOIN
+    category cat ON fc.category_id = cat.category_id
+GROUP BY cat.name
+ORDER BY SUM(p.amount) DESC
+LIMIT 5
+
+--8a. In your new role as an executive, you would like to have an easy way of viewing the Top five genres by gross revenue. Use the solution from the problem above to create a view. If you haven't solved 7h, you can substitute another query to create a view.
+CREATE VIEW top_five_selling_genres AS
+    (SELECT 
+        cat.name, SUM(p.amount)
+    FROM
+        rental r
+            JOIN
+        payment p ON r.rental_id = p.rental_id
+            JOIN
+        inventory i ON r.inventory_id = i.inventory_id
+            JOIN
+        film_category fc ON i.film_id = fc.film_id
+            JOIN
+        category cat ON fc.category_id = cat.category_id
+    GROUP BY cat.name
+    ORDER BY SUM(p.amount) DESC
+    LIMIT 5)
+
+--8b. How would you display the view that you created in 8a?
+SELECT 
+    *
+FROM
+    top_five_selling_genres
+
+--8c. You find that you no longer need the view `top_five_genres`. Write a query to delete it.
+drop view top_five_selling_genres
 
