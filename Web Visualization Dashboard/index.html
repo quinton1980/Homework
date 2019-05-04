@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Web Visualization Dashboad</title>
+      <link rel="stylesheet" href="reset.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="style.css">
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <a class="active" href="index.html">Lattitude</a>
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+                  <div class="dropdown">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Plots
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Temperature</a>
+                          <a class="dropdown-item" href="#">Humidity</a>
+                          <a class="dropdown-item" href="#">Cloudiness</a>
+                          <a class="dropdown-item" href="#">Windspeed</a>
+                      </div>
+                    </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" id="comparisonMargin" href="compare.html">Comparison</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" id="dataMargin" href="data.html">Data</a>
+                </li>
+            </ul>
+          </nav>
+         
+
+
+          <table class="table">
+              <tbody>
+                <tr>
+                  <td>
+                      <div class="container" id="container1">
+                        <h1 id="headermain">Summary: Latitude vs. X</h1>
+                        <hr>
+                        <img id="img1" style="padding: 0 15px; float: left;" src="Fig1.png" alt="Fig1">
+                        <p style="margin-top: 20px;"> </p>
+                          <p class="paragraphs" style="line-height: 40px">The purpose of this project was to analyze how weather changes as you get closer to the equator.  
+                            To accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset
+                            on over 500 cities.
+                          </p>
+                        <p class="paragraphs" style="line-height: 40px">After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude.  Factors we looked at include:
+                          temperature, cloudiness, wind speed and humidity.  This site provides the source data and visualizations created as part of the 
+                          analysis, as well as explanations and descriptions of any trends and coorelations witnessed.
+                        </p>
+                         </div>
+                  </td>
+                  <td>
+                      <!-- <div class="col"><img class="imglinks" src="Fig1.png" alt="Fig1"></div> -->
+                         <div class="container" id="container2">
+                            <div class="container">
+                                <div class="row">
+                                  <div class="col"><div class="col"><a href="temperature.html"><img class="imglinks" src="Fig1.png" alt="Fig1"></a></div></div>
+                                  <div class="col"><div class="col"><a href= "humidity.html"><img class="imglinks" src="Fig2.png" alt="Fig2"></a></div></div>
+                                  <div class="w-100"></div>
+                                  <div class="col"><div class="col"><a href="clouds.html"><img class="imglinks" src="Fig3.png" alt="Fig3"></a></div></div>
+                                  <div class="col"><div class="col"><a href="wind.html"><img class="imglinks" src="Fig4.png" alt="Fig4"></a></div></div>
+                                </div>
+                              </div>
+                         </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+            <footer id="footer1">
+                <p>© Copyright Data Science Bootcamp 2019</p>
+              </footer>
+ 
+            
+
+
+         
+    </body>
