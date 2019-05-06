@@ -13,27 +13,69 @@
     </head>
 
     <body>
-        <nav class="navbar">
-            <a class="active" href="index.html">Lattitude</a>
-            <ul class="nav justify-content-end">
-              <li class="nav-item">
-                  <div class="dropdown">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Plots
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Max Temperature</a>
-                        <a class="dropdown-item" href="#">Humidity</a>
-                        <a class="dropdown-item" href="#">Cloudiness</a>
-                        <a class="dropdown-item" href="#">Windspeed</a>
-                      </div>
-                    </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" id="comparisonMargin" href="compare.html">Comparison</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" id="dataMargin" href="data.html">Data</a>
-                </li>
-            </ul>
-          </nav>
+            <nav class="navbar">
+                <a class="active" href="index.html">Lattitude</a>
+                <ul class="nav justify-content-end">
+                  <li class="nav-item">
+                      <div class="dropdown">
+                          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Plots
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="temperature.html">Max Temperature</a>
+                            <a class="dropdown-item" href="humidity.html">Humidity</a>
+                            <a class="dropdown-item" href="clouds.html">Cloudiness</a>
+                            <a class="dropdown-item" href="wind.html">Windspeed</a>
+                          </div>
+                        </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" id="comparisonMargin" href="compare.html">Comparison</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" id="dataMargin" href="data.html">Data</a>
+                    </li>
+                </ul>
+              </nav>
+              <table class="table">
+                    <tbody>
+                      <tr>
+                        <td style="text-align: center">
+                            <div class="box">
+                              <h1 style="text-align: left" class="headermain">Windspeed</h1>
+                              <hr>
+                              <img id="imgcloud" src="Fig4.png" alt="Fig1">
+                                <p style="text-align: left; padding: 50px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Nullam a egestas magna. Quisque quis metus fermentum, vestibulum turpis et, placerat leo. 
+                                    Quisque commodo, massa vitae ultrices finibus, erat lorem mollis dui, varius pretium nunc tellus eget lectus. 
+                                    Fusce vitae bibendum dui, sit amet faucibus urna. Ut dignissim iaculis volutpat. 
+                                    Nam viverra tempor augue id sagittis. Integer malesuada nibh in rhoncus aliquam. 
+                                    Sed tristique condimentum lorem et efficitur. Aliquam et aliquam leo, id gravida lectus. 
+                                    Donec malesuada tempus erat eleifend lacinia. Mauris facilisis magna vitae auctor lobortis. Ut nec auctor dui.</p>
+                               </div>
+                        </td>
+                        <td>
+                               <div class="container" id="container2">
+                                 <h2 id="header2">Visualizations</h2>
+                                 <hr>
+                                  <div class="container">
+                                      <div class="row">
+                                        <div class="col"><div class="col"><a href="temperature.html"><img class="imglinks" src="Fig1.png" alt="Fig1"></a></div></div>
+                                        <div class="col"><div class="col"><a href= "humidity.html"><img class="imglinks" src="Fig2.png" alt="Fig2"></a></div></div>
+                                        <div class="w-100"></div>
+                                        <div class="col"><div class="col"><a href="clouds.html"><img class="imglinks" src="Fig3.png" alt="Fig3"></a></div></div>
+                                        <div class="col"><div class="col"><a href="wind.html"><img class="imglinks" src="Fig4.png" alt="Fig4"></a></div></div>
+                                      </div>
+                                    </div>
+                               </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <footer class="footer1">
+                        Words
+                        </footer>
+                        <footer class="footer2">
+                        (c) Copyright 2019 Data Science Bootcamp
+                        </footer>
+            </body>

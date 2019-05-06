@@ -4,7 +4,7 @@ body{
 
 .navbar {
     background-color: white;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 0px;
   }
 
@@ -57,16 +57,7 @@ body{
     width: 500px;
 }
 
-#footer1{
-    text-align: center;
-    padding-top: 50px;
-    background-color: #595B5B;
-    color: white;
-    margin-top: 60px;
-    height: 125px;
-}
-
-#headermain{
+.headermain{
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   color: #3FA0A0;
@@ -75,10 +66,25 @@ body{
   padding-bottom: 30px;
 }
 
+#header2{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color: #3FA0A0;
+  padding-left: 40px;
+  padding-top: 50px;
+  padding-bottom: 39px;
+}
+
 #img1{
   padding-top: 75px;
   height: 265px;
   width: 315px;
+}
+
+#imgcloud{
+  padding-top: 25px;
+  height: 365px;
+  width: 415px;
 }
 
 .paragraphs{
@@ -89,6 +95,61 @@ body{
 }
 
 .imglinks{
-  height: 17%;
-  width: 100%;
+  height: 150px;
+  width: 175px;
+}
+
+.footer1{
+  background-color: #3FA0A0;
+  color: #3FA0A0;
+  height: 5%;
+  font-size: 5px;
+}
+.footer2{
+  background-color: #595B5B;
+  height: 150px;
+  text-align: center;
+  color: white;
+  padding: 50px;
+}
+
+#comparisoncontainer{
+background-color: white;
+margin-top: 50px;
+margin-left: 50px;
+margin-right: 70px;
+align-content: center;
+}
+
+.imgcompare{
+height: 300px;
+width: 410px;
+}
+
+.h3compare{
+  color: #3FA0A0;
+  font-weight: bold;
+}
+
+#datatable{
+margin: 50px;
+margin-right: 50px;
+}
+
+.box{
+  margin-top: 50px;
+  height: 750px;
+  background-color: white;
+}
+.pcompare{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color: #3FA0A0;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+.box{
+  float: left;
+}
 }
