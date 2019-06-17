@@ -1,3 +1,13 @@
+
+
+function makeResponsive() {
+
+  var svgArea = d3.select("body").select("svg");
+  
+  if (!svgArea.empty()) {
+    svgArea.remove();
+  }
+  
 var svgHeight = 500
 var svgWidth = 960
 
@@ -24,14 +34,15 @@ d3.csv("assets/data/data.csv")
         povertyData.forEach((data) => {
             data.poverty = +data.poverty;
             data.healthcare = +data.healthcare;
+            data.abbr = +data.abbr;
           });
 
         var xLinearScale = d3.scaleLinear()
-          .domain([20, d3.max(povertyData, d => d.healthcare)])
+          .domain([8, d3.max(povertyData, d => d.poverty)])
           .range([0, width]);
     
         var yLinearScale = d3.scaleLinear()
-          .domain([0, d3.max(povertyData, d => d.poverty)])
+          .domain([0, d3.max(povertyData, d => d.healthcare)])
           .range([height, 0]);
 
           var bottomAxis = d3.axisBottom(xLinearScale);
@@ -50,20 +61,31 @@ d3.csv("assets/data/data.csv")
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", "15")
+    .attr("r", "10")
     .attr("fill", "green")
+    .attr("opacity", ".5");
+
+    chartGroup.selectAll("bubble")
+    .data(povertyData)
+    .enter()
+    .append("circle")
+    .text(function(d){return d.abbr;})
+    .attr("cx", d => xLinearScale(d.poverty))
+    .attr("cy", d => yLinearScale(d.healthcare))
+    .attr("r", "10")
+    .attr("fill", "white")
     .attr("opacity", ".5");
 
     var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
     .html((d) => {
-      return (`${d.state}<br>Poverty Level: ${d.poverty}<br>Healthcare coverage: ${d.healthcare}`);
+      return (`${d.abbr}<br>Poverty Level: ${d.poverty}<br>Healthcare coverage: ${d.healthcare}`);
     });
 
     chartGroup.call(toolTip);
 
-    circlesGroup.on("click", (data) => {
+    circlesGroup.on("mouseover", (data) => {
         toolTip.show(data, this);
       })
         // onmouseout event
@@ -72,15 +94,22 @@ d3.csv("assets/data/data.csv")
         });
 
         chartGroup.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left + 40)
-        .attr("x", 0 - (height / 2))
-        .attr("dy", "1em")
-        .attr("class", "axisText")
-        .text("Poverty");
+          .attr("text-anchor", "middle")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 0 - margin.left + 40)
+          .attr("x", 0 - (height / 2))
+          .attr("dy", "1em")
+          .attr("class", "axisText")
+          .text("Healthcare");
 
         chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
         .attr("class", "axisText")
-        .text("Healthcare");
+        .text("Poverty (%)");
     });
+  }
+
+makeResponsive();
+
+// Event listener for window resize.
+d3.select(window).on("resize", makeResponsive);
