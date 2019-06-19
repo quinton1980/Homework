@@ -14,7 +14,7 @@ var svgWidth = 960
 var margin = {
     top: 20,
     bottom: 60,
-    right: 40,
+    right: 80,
     left: 100
 }
 
@@ -55,37 +55,37 @@ d3.csv("assets/data/data.csv")
     chartGroup.append("g")
       .call(leftAxis);
 
-    var circlesGroup = chartGroup.selectAll("circle")
+    chartGroup.selectAll("circle")
     .data(povertyData)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", "10")
+    .attr("r", "7")
     .attr("fill", "green")
     .attr("opacity", ".5");
 
-    chartGroup.selectAll("bubble")
+    var circlesGroup = chartGroup.selectAll("bubble")
     .data(povertyData)
     .enter()
     .append("circle")
-    .text(function(d){return d.abbr;})
+    .text(function(d){return d.abbr})
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", "10")
+    .attr("r", "7")
     .attr("fill", "white")
     .attr("opacity", ".5");
 
     var toolTip = d3.tip()
-    .attr("class", "tooltip")
-    .offset([80, -60])
+    .attr("class", "d3-tip")
+    .offset([80, 60])
     .html((d) => {
-      return (`${d.abbr}<br>Poverty Level: ${d.poverty}<br>Healthcare coverage: ${d.healthcare}`);
+      return (`${d.state}<br>Poverty Level: ${d.poverty}<br>Healthcare coverage: ${d.healthcare}`);
     });
 
     chartGroup.call(toolTip);
 
-    circlesGroup.on("mouseover", (data) => {
+    circlesGroup.on("click", (data) => {
         toolTip.show(data, this);
       })
         // onmouseout event
@@ -100,7 +100,7 @@ d3.csv("assets/data/data.csv")
           .attr("x", 0 - (height / 2))
           .attr("dy", "1em")
           .attr("class", "axisText")
-          .text("Healthcare");
+          .text("Lacks Healthcare (%)");
 
         chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
